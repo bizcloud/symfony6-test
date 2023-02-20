@@ -38,7 +38,8 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     volumes:
-      - symfony6-test-database-data:/var/lib/postgresql/data
+      - symfony6-test-database-data:/var/lib/postgresql/data:rw
+
 
 volumes:
   symfony6-test-database-data:
