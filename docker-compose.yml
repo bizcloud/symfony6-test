@@ -21,8 +21,8 @@ services:
     ports:
       - '8083:80'
     volumes:
-      - "./:/var/www/symfony-test"
-      - ./docker/nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+      - "./:/var/www/symfony6-test"
+      - "./docker/nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf"
     depends_on:
       - php
 
