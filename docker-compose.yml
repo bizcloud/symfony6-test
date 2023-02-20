@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  php:
+    build: ./docker/php-fpm
+    container_name: 'symfony6-test-php-fpm'
+    ports:
+      - '9000:9000'
+    volumes:
+      - "./:/var/www/symfony6-test"
+    working_dir: /var/www/symfony6-test
+    depends_on:
+      - postgres
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+      - DATABASE_URL=postgresql://user:password@postgres:15432/symfony
+  nginx:
+    image: nginx:alpine
+    container_name: 'symfony6-test-nginx'
+    working_dir: /var/www/symfony6-test
+    ports:
+      - '8083:80'
+    volumes:
+      - "./:/var/www/symfony-test"
+      - ./docker/nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  postgres:
+    image: postgres:15.2
+    ports:
+      - '15432:15432'
+    container_name: 'symfony6-test-postgresql'
+    working_dir: /var/www/symfony-test
+    restart: always
+    environment:
+      - POSTGRES_DATABASE=symfony
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - symfony6-test-database-data:/var/lib/postgresql/data
+
+volumes:
+  symfony6-test-database-data:
