@@ -3,6 +3,7 @@
 ## Requirements
 
 Docker
+Make
 
 ## Install using docker
 
