@@ -8,6 +8,7 @@ services:
     volumes:
       - "./:/var/www/symfony6-test"
     working_dir: /var/www/symfony6-test
+    entrypoint: /var/www/symfony6-test/docker/php-fpm/entrypoint.sh
     depends_on:
       - postgres
     environment:
@@ -30,6 +31,9 @@ services:
     image: postgres:15.2
     ports:
       - '15432:15432'
+    expose:
+      - "15432" # Publishes to other containers but NOT to host machine
+    command: -p 15432
     container_name: 'symfony6-test-postgresql'
     working_dir: /var/www/symfony-test
     restart: always

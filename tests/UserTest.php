@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
 
 /**
  *
@@ -27,7 +28,7 @@ class UserTest extends KernelTestCase
     {
         // Set up
         $user = new User();
-        $user->setName('user1');
+        $user->setEmail('email@domain.com');
 
         $this->entityManager->persist($user);
 
@@ -35,7 +36,7 @@ class UserTest extends KernelTestCase
         $this->entityManager->flush();
 
         $userRepository = $this->entityManager->getRepository(User::class);
-        $userRecord = $userRepository->findOneBy(['name'=> 'user1']);
+        $userRecord = $userRepository->findOneBy(['email'=> 'email@domain.com']);
 
         //Make assertion
         $this->assertEquals('user1', $userRecord->getName());
