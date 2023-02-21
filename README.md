@@ -11,6 +11,10 @@ Make
 1. docker-compose up
 1. Application now is ready on http://localhost:8000
 
+## Test
+
+make test
+
 ## ТЗ
 
 ```
