@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class IndexControllerTest extends WebTestCase
 {
     /** @test  */
-    public function indexTest(): void
+    public function testIndex(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');

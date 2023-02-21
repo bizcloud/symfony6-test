@@ -11,8 +11,8 @@ php bin/console cache:warmup
 echo "Warming up cache finished."
 
 echo "Creating database.."
+php bin/console doctrine:database:drop --force  --env=dev
 php bin/console doc:database:create --if-not-exists
-
 echo "Creating database finished."
 
 
