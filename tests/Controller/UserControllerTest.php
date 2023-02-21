@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Controller;
+namespace App\Tests\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -59,7 +59,7 @@ class UserControllerTest extends WebTestCase
         $this->markTestIncomplete();
         $fixture = new User();
         $fixture->setEmail('My Title');
-        $fixture->setRoles('My Title');
+        $fixture->setRoles(['ROLE_USER']);
         $fixture->setPassword('My Title');
 
         $this->repository->save($fixture, true);
@@ -77,7 +77,7 @@ class UserControllerTest extends WebTestCase
         $this->markTestIncomplete();
         $fixture = new User();
         $fixture->setEmail('My Title');
-        $fixture->setRoles('My Title');
+        $fixture->setRoles(['ROLE_USER']);
         $fixture->setPassword('My Title');
 
         $this->repository->save($fixture, true);
@@ -107,7 +107,7 @@ class UserControllerTest extends WebTestCase
 
         $fixture = new User();
         $fixture->setEmail('My Title');
-        $fixture->setRoles('My Title');
+        $fixture->setRoles(['ROLE_USER']);
         $fixture->setPassword('My Title');
 
         $this->repository->save($fixture, true);
