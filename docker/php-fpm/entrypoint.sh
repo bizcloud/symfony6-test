@@ -13,9 +13,13 @@ echo "Warming up cache finished."
 echo "Creating database.."
 php bin/console doc:database:create --if-not-exists
 
-echo "Applying migrations finished."
+echo "Creating database finished."
 
 
 echo "Applying migrations.."
 php bin/console doc:mig:mig -n
 echo "Applying migrations finished."
+
+php-fpm -F -R
+
+

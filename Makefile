@@ -1,4 +1,4 @@
-DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE = sudo docker-compose
 EXEC           = $(DOCKER_COMPOSE) exec
 EXEC_PHP       = $(DOCKER_COMPOSE) exec -T php
 SYMFONY        = $(EXEC_PHP) bin/console
