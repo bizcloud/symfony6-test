@@ -11,6 +11,11 @@ use App\Entity\User;
  */
 class UserTest extends KernelTestCase
 {
+
+
+    const TEST_USER_EMAIL = 'email@domain.com';
+    const TEST_USER_PASSWORD = '123' ;
+
 /** @var EntityManagerInterface */
     private $entityManager;
 
@@ -25,13 +30,23 @@ class UserTest extends KernelTestCase
         $this->entityManager = $kernel->getContainer()->get('doctrine')->getManager();
     }
 
+    /**
+     * @return void
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->entityManager->close();
+        $this->entityManager = null;
+    }
+
     /** @test */
     public function createUserTest_givenEmailAndPassword_UserSuccessfulCreatedInDataBase()
     {
         // Set up
         $user = new User();
-        $user->setEmail('email@domain.com');
-        $user->setPassword('123');
+        $user->setEmail($this::TEST_USER_EMAIL);
+        $user->setPassword($this::TEST_USER_PASSWORD);
 
         $this->entityManager->persist($user);
 
@@ -39,7 +54,7 @@ class UserTest extends KernelTestCase
         $this->entityManager->flush();
 
         $userRepository = $this->entityManager->getRepository(User::class);
-        $userRecord = $userRepository->findOneBy(['email'=> 'email@domain.com']);
+        $userRecord = $userRepository->findOneBy(['email'=> $this::TEST_USER_EMAIL]);
 
         //Make assertion
         $this->assertEquals('email@domain.com', $userRecord->getEmail());
