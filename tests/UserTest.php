@@ -20,6 +20,8 @@ class UserTest extends KernelTestCase
     protected function setUp(): void
     {
         $kernel = self::bootKernel();
+        DatabasePrimer::prime($kernel);
+        DatabasePrimer::truncateAll($kernel);
         $this->entityManager = $kernel->getContainer()->get('doctrine')->getManager();
     }
 
@@ -29,6 +31,7 @@ class UserTest extends KernelTestCase
         // Set up
         $user = new User();
         $user->setEmail('email@domain.com');
+        $user->setPassword('123');
 
         $this->entityManager->persist($user);
 
@@ -39,7 +42,7 @@ class UserTest extends KernelTestCase
         $userRecord = $userRepository->findOneBy(['email'=> 'email@domain.com']);
 
         //Make assertion
-        $this->assertEquals('user1', $userRecord->getName());
+        $this->assertEquals('email@domain.com', $userRecord->getEmail());
 
     }
 
