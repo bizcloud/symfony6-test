@@ -26,7 +26,7 @@ class UserTest extends KernelTestCase
     }
 
     /** @test */
-    public function a_user_record_can_be_created_in_database()
+    public function createUserTest_givenEmailAndPassword_UserSuccessfulCreatedInDataBase()
     {
         // Set up
         $user = new User();
