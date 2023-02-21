@@ -42,8 +42,8 @@ class UserEventTest extends KernelTestCase
     {
         //Arrange
         $user = new User();
-        $user->setEmail($this::TEST_USER_EMAIL);
-        $user->setPassword($this::TEST_USER_PASSWORD);
+        $user->setEmail(self::TEST_USER_EMAIL);
+        $user->setPassword(self::TEST_USER_PASSWORD);
         $this->entityManager->persist($user);
         $date = new \DateTime('now');
         $event = new Event();

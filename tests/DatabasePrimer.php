@@ -17,9 +17,9 @@ class DatabasePrimer
      */
     public static function prime(KernelInterface $kernel)
     {
-        // Make sure we are in the dev environment
-        if ('dev' !== $kernel->getEnvironment()) {
-            throw new \LogicException('Primer must be executed in the dev environment');
+        // Make sure we are in the test environment
+        if ('test' !== $kernel->getEnvironment()) {
+            throw new \LogicException('Primer must be executed in the test environment');
         }
 
         // Get the entity manager from the service container
@@ -40,9 +40,9 @@ class DatabasePrimer
      */
     public static function truncateAll(KernelInterface $kernel)
     {
-        // Make sure we are in the dev environment
-        if ('dev' !== $kernel->getEnvironment()) {
-            throw new \LogicException('Primer must be executed in the dev environment');
+        // Make sure we are in the test environment
+        if ('test' !== $kernel->getEnvironment()) {
+            throw new \LogicException('Primer must be executed in the test environment');
         }
 
 
