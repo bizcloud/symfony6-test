@@ -9,7 +9,7 @@ Make
 
 1. git clone this repository
 1. docker-compose up
-1. Application now is ready on http://localhost:8003
+1. Application now is ready on http://localhost:8083
 
 ## Test
 
